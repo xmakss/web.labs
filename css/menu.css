@@ -14,6 +14,23 @@
     border-color: black;
 }
 
+body{
+    background: linear-gradient(45deg, #666666, #CCCCCC, #333333);
+    background-size: 400% 200%;
+    animation: moving_gradient 10s ease infinite;
+}
+
+@keyframes moving_gradient {
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}
 /* add hover behaviour */
 .mainmenu a:hover {
     background-color: #C5C5C5;
