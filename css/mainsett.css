@@ -1,5 +1,5 @@
 ul.ul-top-menu {
-  list-style: none; /*убираем маркеры списка*/
+  list-style-type: none; /*убираем маркеры списка*/
   margin: 0; /*убираем отступы*/
   padding-left: 0; /*убираем отступы*/
   text-align: center;
@@ -38,18 +38,24 @@ li.li-top-menu {
   margin-right:5px; /*Добавляем отступ у пунктов меню*/
   align-items: center;
 }
+
 p, h1 {
   text-align: center;
 }
 body{
-  background-image: url("../images/flag.jpg");
+  background: url("../images/flag.jpg"), #FFC72D;
+}
+#timeleft{
+  width: 48em;
+  height: 20em;
+  text-align: center;
 }
 @font-face {
   font-family: 'FontTable';
   src: url("../fonts/pobeda-regular.ttf") format("truetype");
 }
 table.victory{
-  font-family: 'FontTable';
+  font-family: 'FontTable', "Awesome";
   font-size: 200%;
   display: flex;
   border: 10px solid;
