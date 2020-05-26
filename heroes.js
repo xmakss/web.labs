@@ -1,6 +1,5 @@
 about = ['Имя Фамилия', 'Звание: ', 'Год рождения: ', 'Дата смерти: ', 'История героя: ']
-heroes = [['Александр Матросов', 'Стрелок-автоматчик 2-го отдельного батальона 91-й отдельной Сибирской добровольческой бригады имени' +
-'                Сталина.', 1924, 1943, ['Саша Матросов родителей не знал. Он воспитывался в детском доме и трудовой колонии. Когда началась война,',
+heroes_list = [['Александр Матросов', 'Стрелок-автоматчик 2-го отдельного батальона 91-й отдельной Сибирской добровольческой бригады имениСталина.', 1924, 1943, ['Саша Матросов родителей не знал. Он воспитывался в детском доме и трудовой колонии. Когда началась война,',
 '                ему не было и 20. Матросова призвали в армию в сентябре 1942-го и отправили в пехотное училище, а затем',
 '                на фронт.В феврале 1943 года его батальон атаковал опорный пункт фашистов, но угодил в ловушку, попав под плотный',
 '                огонь, отрезавший путь к окопам. Стреляли из трех дзотов. Два вскоре замолчали, однако третий продолжал',
@@ -43,7 +42,7 @@ heroes = [['Александр Матросов', 'Стрелок-автомат
     'Его судьба вдохновила писателя Бориса Полевого написать «Повесть о настоящем человеке».'], {photo: 'maresev.png'}]];
 
 var obj1 = {
-    heroes: heroes,
+    heroes: heroes_list,
     outHeroes:
                 function () {
                     function makeTableForHero(hero) {
@@ -56,11 +55,12 @@ var obj1 = {
                         tab += "<td><p>" + about[3] + "</p></td>"
                         tab += "<td><p>" + hero[3] + "</p></td></tr>"
                         tab += "<td><p>" + about[4] + "</p></td>"
-                        tab += "<td><p>" + hero[4] + "</p></td></tr>"
+                        hero_text = hero[4].join(' ')
+                        tab += "<td><p>" + hero_text + "</p></td></tr>"
                         tab += "</tr></table>";
                         return tab;
                     };
-                    var out = heroes.map(makeTableForHero);
+                    var out = this.heroes.map(makeTableForHero);
                     var elem = document.getElementById('table_victory');
                     out.forEach(function (info, i, arr) {
                         elem.innerHTML += info + "<br>";
@@ -69,10 +69,11 @@ var obj1 = {
 }
 
 function Change() {
+    this.heroes = Object.assign([], heroes_list);
     this.changeHeroes = function (data) {
-        this.heroes = heroes.sort(function (a,b) {
+        this.heroes = this.heroes.sort(function (a,b) {
             return data == 1 ? a[2]-b[2] : b[2]-a[2]
-        })
+        });
     }
 }
 
@@ -81,10 +82,10 @@ function Change() {
 
     function init() {
         var obj2 = new Change();
-        //obj1.outHeroes();  Обычный вывод данных
-        //obj1.outHeroes.call(obj2);  Вывод данных объекта obj2 с помощью метода outHeroes объекта obj1
-        //obj2.changeHeroes.call(obj1, 1)  Изменение данных obj1.heroes с помощью метода changeHeroes объекта obj2
-        obj2.changeHeroes(1);
-        obj1.outHeroes.call(obj2)
+        obj1.outHeroes();   //пункт 3.a
+        obj1.outHeroes.call(obj2);  //пункт 3.б
+        obj2.changeHeroes.call(obj1,1);  //пункт 3.в
+        obj1.outHeroes();  //пункт 3.г
+        console.log(obj2); //Данные obj2 не зависят от obj1
     }
 })(window, document);
