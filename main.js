@@ -18,11 +18,10 @@
             cur_tr.target.setAttribute("style" , "")
         }
         function element_changed() {
+            console.log(selector.value)
             elemToStyle.removeEventListener('mouseover', set_style, true);
-            elemToStyle.removeEventListener('mouseout', clear_styles, true);
             elemToStyle = document.getElementById(selector.value);
             elemToStyle.addEventListener('mouseover', set_style, true);
-            elemToStyle.addEventListener('mouseout', clear_styles, true);
         }
 
         function set_style(cur_tr)
